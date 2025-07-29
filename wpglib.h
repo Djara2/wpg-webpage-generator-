@@ -7,11 +7,10 @@ enum PageType {
 	PAGETYPE_ARTICLE
 };
 
+
 struct AnchorTag {
-	unsigned short href_length;
-	unsigned short text_length;
-	char *href;
-	char *text;
+	struct String href;
+	struct String text;
 };
 
 struct GridPage {
@@ -25,6 +24,9 @@ struct Page{
 	char *title;
 	void *page_data;	// based on page_type
 };
+
+struct String* string_create();
+void string_destroy(struct String *string);
 
 struct GridPage* grid_page_create();
 void grid_page_destroy(struct *GridPage grid_page);

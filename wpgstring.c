@@ -1,0 +1,123 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include "wpgstring.h"
+
+struct String* string_init() {
+	struct String *new_string = malloc(sizeof(struct String));
+	if (new_string == NULL) {
+		fprintf(stderr, "[string_create] Failed to allocate memory for a new String struct on the heap.\n");
+		return NULL;
+	}
+
+	new_string->length = 0;
+	new_string->capacity = 32;
+	new_string->data = malloc(sizeof(char) * 32);
+	if (new_string->data == NULL) {
+		fprintf(stderr, "[string_create] Failed to allocate memory for default 32 bytes of array memory for the String to be created.\n");
+		free(new_string);
+		return NULL;
+	}
+
+	return new_string;
+}
+
+struct String* string_create(char *data, unsigned short length) {
+	if (data == NULL) {
+		fprintf(stderr, "[string_create] Cannot create a new String using a character pointer that points to NULL.\n");
+		return NULL;
+	}
+	
+	if (length == 0) {
+		fprintf(stderr, "[string_create] Cannot create a new String of length 0.\n");
+		return NULL;
+	}
+	
+	// Attempt to allocate String struct itself.
+	struct String *new_string = malloc(sizeof(struct String));
+	if (new_string == NULL) {
+		fprintf(stderr, "[string_create] Failed to allocate memory for a new String on the heap.\n");
+		return NULL;
+	}
+
+	// Attempt to allocate data buffer.
+	new_string->data = malloc(sizeof(char) * (length + 1));
+	if (new_string->data == NULL) {
+		fprintf(stderr, "[string_create] Failed to allocate %hu bytes of memory for the provided string \"%s\".\n", length, data);
+		free(new_string);
+		return NULL;
+	}
+
+	// Set bounds
+	new_string->length = length;
+	new_string->capacity = length + 1;
+
+	// Copy string data
+	strcpy(new_string->data, data);
+	new_string->data[length] = '\0'; 
+
+	return new_string;
+}
+
+bool string_set(struct String *string, char *data, unsigned short length) {
+	if (string == NULL) {
+		fprintf(stderr, "[string_set] Cannot set data for a String pointer that points to NULL.\n");
+		return ERROR_NULL_POINTER;
+	}
+
+	if (data == NULL) {
+		fprintf(stderr, "[string_set] Cannot set data with a char pointer that points to NULL.\n");
+		return ERROR_NULL_POINTER;
+	}
+
+	if (length == 0) {
+		fprintf(stderr, "[string_set] Cannot set a String with a length of 0. Try to use string_clear for this functionality.\n");
+		return ERROR_BAD_LENGTH;
+	}
+
+	if (length >= string->capacity) {
+		string->data = realloc(sizeof(char) * (length + 1));
+		if (string->data == NULL) {
+			fprintf(stderr, "[string_set] Failed to reallocate the data buffer of the string to be set.\n");
+			free(string);
+			return ERROR_FAILED_REALLOC;
+		}
+	}
+	
+	string->length = length;
+	string->capacity = length + 1;
+	strcpy(string->data, data);
+	string->data[length] = '\0';
+
+	return ERROR_NONE;
+}
+
+enum WPGError string_clear(struct String *string) {
+	if (string == NULL) {
+		fprintf(stderr, "[string_clear] Cannot reset the data buffer of a String with a NULL pointer.\n");
+		return ERROR_NULL_POINTER;
+	}
+
+	if (string->data == NULL) {
+		fprintf(stderr, "[string_clear] Cannot reset the data buffer of a String with a NULL pointer data buffer.\n");
+		return ERROR_NULL_POINTER;
+	}
+
+	string->length = 0;
+	memset(string->data, 0, string->capacity);
+	return ERROR_NONE;
+
+}
+
+void string_destroy(struct String *string) {
+	if (string == NULL) {
+		fprintf(stderr, "[string_destroy] Cannot free the memory of a String pointer that points to NULL.\n");
+		return;
+	}
+
+	if (string->data != NULL)
+		free(string->data);
+
+	free(string);
+}

@@ -3,27 +3,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-char* create_string(unsigned short *length, unsigned short capacity) {
-	if (length == NULL) { 
-		fprintf(stderr, "[create_string] Length attribute cannot be a pointer to NULL.\n");
-		return NULL;
-	}
-	
-	if (capacity < 2) {
-		fprintf(stderr, "[create_string] Capacity cannot be less than 2 characters.\n");	
-		return NULL;
-	}
-
-	char *new_string = malloc(sizeof(char) * (*length));
-	if (new_string == NULL) { 
-		fprintf(stderr, "[create_string] Failed to allocate memory for a string of capacity %hu.\n", capacity);
-		return NULL;
-	}
-
-	(*length) = 0;
-	return new_string;
-}
-
 struct GridPage* grid_page_create() {
 	struct GridPage *new_grid_page = malloc(sizeof(struct GridPage));
 	if (new_grid_page == NULL) {
