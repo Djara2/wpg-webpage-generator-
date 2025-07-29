@@ -60,28 +60,28 @@ struct String* string_create(char *data, unsigned short length) {
 	return new_string;
 }
 
-bool string_set(struct String *string, char *data, unsigned short length) {
+enum StringError string_set(struct String *string, char *data, unsigned short length) {
 	if (string == NULL) {
 		fprintf(stderr, "[string_set] Cannot set data for a String pointer that points to NULL.\n");
-		return ERROR_NULL_POINTER;
+		return STRING_ERROR_NULL_POINTER;
 	}
 
 	if (data == NULL) {
 		fprintf(stderr, "[string_set] Cannot set data with a char pointer that points to NULL.\n");
-		return ERROR_NULL_POINTER;
+		return STRING_ERROR_NULL_POINTER;
 	}
 
 	if (length == 0) {
 		fprintf(stderr, "[string_set] Cannot set a String with a length of 0. Try to use string_clear for this functionality.\n");
-		return ERROR_BAD_LENGTH;
+		return STRING_ERROR_BAD_LENGTH;
 	}
 
 	if (length >= string->capacity) {
-		string->data = realloc(sizeof(char) * (length + 1));
+		string->data = realloc(string->data, sizeof(char) * (length + 1));
 		if (string->data == NULL) {
 			fprintf(stderr, "[string_set] Failed to reallocate the data buffer of the string to be set.\n");
 			free(string);
-			return ERROR_FAILED_REALLOC;
+			return STRING_ERROR_FAILED_REALLOC;
 		}
 	}
 	
@@ -90,23 +90,23 @@ bool string_set(struct String *string, char *data, unsigned short length) {
 	strcpy(string->data, data);
 	string->data[length] = '\0';
 
-	return ERROR_NONE;
+	return STRING_ERROR_NONE;
 }
 
-enum WPGError string_clear(struct String *string) {
+enum StringError string_clear(struct String *string) {
 	if (string == NULL) {
 		fprintf(stderr, "[string_clear] Cannot reset the data buffer of a String with a NULL pointer.\n");
-		return ERROR_NULL_POINTER;
+		return STRING_ERROR_NULL_POINTER;
 	}
 
 	if (string->data == NULL) {
 		fprintf(stderr, "[string_clear] Cannot reset the data buffer of a String with a NULL pointer data buffer.\n");
-		return ERROR_NULL_POINTER;
+		return STRING_ERROR_NULL_POINTER;
 	}
 
 	string->length = 0;
 	memset(string->data, 0, string->capacity);
-	return ERROR_NONE;
+	return STRING_ERROR_NONE;
 
 }
 

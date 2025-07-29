@@ -1,2 +1,26 @@
 #!/usr/bin/env bash
-gcc wpg.c -o wpg
+echo "Compiling WPG String... "
+if gcc -c wpgstring.c -o wpgstring.o ; then
+	echo "Success!"
+else
+	echo "Failed!"
+	exit 1
+fi
+
+echo "Compiling WPGlib... "
+if gcc -c wpglib.c wpgstring.o -o wpglib.o ; then
+	echo "Success!"
+else
+	echo "Failed!" 
+	exit 1
+fi
+
+echo "Compiling WPG main program... "
+if gcc wpg.c wpgstring.o wpglib.o -o wpg ; then
+	echo "Success!"
+else
+	echo "Failed!"
+	exit 1
+fi
+
+echo "Compilation complete!"
