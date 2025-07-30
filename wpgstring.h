@@ -22,5 +22,7 @@ enum StringError string_set(struct String *string, char *data, unsigned short le
 
 enum StringError string_clear(struct String *string);
 
+struct String* string_splice(struct String *string, unsigned short start, unsigned short end, short step);
+
 void string_destroy(struct String *string);
 #endif

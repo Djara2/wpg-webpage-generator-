@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+gcc string_test.c ../wpgstring.o -o string_test
