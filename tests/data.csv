@@ -1,0 +1,257 @@
+Input,Output,Start,End,Step
+hi my name is pink and im really glad to meet you,h,0,1,1
+hi my name is pink and im really glad to meet you,h,0,1,2
+hi my name is pink and im really glad to meet you,h,0,1,3
+hi my name is pink and im really glad to meet you,h,0,1,4
+hi my name is pink and im really glad to meet you,hi ,0,3,1
+hi my name is pink and im really glad to meet you,h ,0,3,2
+hi my name is pink and im really glad to meet you,h,0,3,3
+hi my name is pink and im really glad to meet you,h,0,3,4
+hi my name is pink and im really glad to meet you,hi my,0,5,1
+hi my name is pink and im really glad to meet you,h y,0,5,2
+hi my name is pink and im really glad to meet you,hm,0,5,3
+hi my name is pink and im really glad to meet you,hy,0,5,4
+hi my name is pink and im really glad to meet you,hi my name i,0,12,1
+hi my name is pink and im really glad to meet you,h ynm ,0,12,2
+hi my name is pink and im really glad to meet you,hmne,0,12,3
+hi my name is pink and im really glad to meet you,hym,0,12,4
+hi my name is pink and im really glad to meet you,,1,1,1
+hi my name is pink and im really glad to meet you,,1,1,2
+hi my name is pink and im really glad to meet you,,1,1,3
+hi my name is pink and im really glad to meet you,,1,1,4
+hi my name is pink and im really glad to meet you,i ,1,3,1
+hi my name is pink and im really glad to meet you,i,1,3,2
+hi my name is pink and im really glad to meet you,i,1,3,3
+hi my name is pink and im really glad to meet you,i,1,3,4
+hi my name is pink and im really glad to meet you,i my,1,5,1
+hi my name is pink and im really glad to meet you,im,1,5,2
+hi my name is pink and im really glad to meet you,iy,1,5,3
+hi my name is pink and im really glad to meet you,i,1,5,4
+hi my name is pink and im really glad to meet you,i my name i,1,12,1
+hi my name is pink and im really glad to meet you,im aei,1,12,2
+hi my name is pink and im really glad to meet you,iya ,1,12,3
+hi my name is pink and im really glad to meet you,i e,1,12,4
+hi my name is pink and im really glad to meet you,,2,1,1
+hi my name is pink and im really glad to meet you,,2,1,2
+hi my name is pink and im really glad to meet you,,2,1,3
+hi my name is pink and im really glad to meet you,,2,1,4
+hi my name is pink and im really glad to meet you, ,2,3,1
+hi my name is pink and im really glad to meet you, ,2,3,2
+hi my name is pink and im really glad to meet you, ,2,3,3
+hi my name is pink and im really glad to meet you, ,2,3,4
+hi my name is pink and im really glad to meet you, my,2,5,1
+hi my name is pink and im really glad to meet you, y,2,5,2
+hi my name is pink and im really glad to meet you, ,2,5,3
+hi my name is pink and im really glad to meet you, ,2,5,4
+hi my name is pink and im really glad to meet you, my name i,2,12,1
+hi my name is pink and im really glad to meet you, ynm ,2,12,2
+hi my name is pink and im really glad to meet you,  mi,2,12,3
+hi my name is pink and im really glad to meet you, n ,2,12,4
+hi my name is pink and im really glad to meet you,,5,1,1
+hi my name is pink and im really glad to meet you,,5,1,2
+hi my name is pink and im really glad to meet you,,5,1,3
+hi my name is pink and im really glad to meet you,,5,1,4
+hi my name is pink and im really glad to meet you,,5,3,1
+hi my name is pink and im really glad to meet you,,5,3,2
+hi my name is pink and im really glad to meet you,,5,3,3
+hi my name is pink and im really glad to meet you,,5,3,4
+hi my name is pink and im really glad to meet you,,5,5,1
+hi my name is pink and im really glad to meet you,,5,5,2
+hi my name is pink and im really glad to meet you,,5,5,3
+hi my name is pink and im really glad to meet you,,5,5,4
+hi my name is pink and im really glad to meet you, name i,5,12,1
+hi my name is pink and im really glad to meet you, aei,5,12,2
+hi my name is pink and im really glad to meet you, mi,5,12,3
+hi my name is pink and im really glad to meet you, e,5,12,4
+hey woahhhhh is this illegal,h,0,1,1
+hey woahhhhh is this illegal,h,0,1,2
+hey woahhhhh is this illegal,h,0,1,3
+hey woahhhhh is this illegal,h,0,1,4
+hey woahhhhh is this illegal,hey,0,3,1
+hey woahhhhh is this illegal,hy,0,3,2
+hey woahhhhh is this illegal,h,0,3,3
+hey woahhhhh is this illegal,h,0,3,4
+hey woahhhhh is this illegal,hey w,0,5,1
+hey woahhhhh is this illegal,hyw,0,5,2
+hey woahhhhh is this illegal,h ,0,5,3
+hey woahhhhh is this illegal,hw,0,5,4
+hey woahhhhh is this illegal,hey woahhhhh,0,12,1
+hey woahhhhh is this illegal,hywahh,0,12,2
+hey woahhhhh is this illegal,h ah,0,12,3
+hey woahhhhh is this illegal,hwh,0,12,4
+hey woahhhhh is this illegal,,1,1,1
+hey woahhhhh is this illegal,,1,1,2
+hey woahhhhh is this illegal,,1,1,3
+hey woahhhhh is this illegal,,1,1,4
+hey woahhhhh is this illegal,ey,1,3,1
+hey woahhhhh is this illegal,e,1,3,2
+hey woahhhhh is this illegal,e,1,3,3
+hey woahhhhh is this illegal,e,1,3,4
+hey woahhhhh is this illegal,ey w,1,5,1
+hey woahhhhh is this illegal,e ,1,5,2
+hey woahhhhh is this illegal,ew,1,5,3
+hey woahhhhh is this illegal,e,1,5,4
+hey woahhhhh is this illegal,ey woahhhhh,1,12,1
+hey woahhhhh is this illegal,e ohhh,1,12,2
+hey woahhhhh is this illegal,ewhh,1,12,3
+hey woahhhhh is this illegal,eoh,1,12,4
+hey woahhhhh is this illegal,,2,1,1
+hey woahhhhh is this illegal,,2,1,2
+hey woahhhhh is this illegal,,2,1,3
+hey woahhhhh is this illegal,,2,1,4
+hey woahhhhh is this illegal,y,2,3,1
+hey woahhhhh is this illegal,y,2,3,2
+hey woahhhhh is this illegal,y,2,3,3
+hey woahhhhh is this illegal,y,2,3,4
+hey woahhhhh is this illegal,y w,2,5,1
+hey woahhhhh is this illegal,yw,2,5,2
+hey woahhhhh is this illegal,y,2,5,3
+hey woahhhhh is this illegal,y,2,5,4
+hey woahhhhh is this illegal,y woahhhhh,2,12,1
+hey woahhhhh is this illegal,ywahh,2,12,2
+hey woahhhhh is this illegal,yohh,2,12,3
+hey woahhhhh is this illegal,yah,2,12,4
+hey woahhhhh is this illegal,,5,1,1
+hey woahhhhh is this illegal,,5,1,2
+hey woahhhhh is this illegal,,5,1,3
+hey woahhhhh is this illegal,,5,1,4
+hey woahhhhh is this illegal,,5,3,1
+hey woahhhhh is this illegal,,5,3,2
+hey woahhhhh is this illegal,,5,3,3
+hey woahhhhh is this illegal,,5,3,4
+hey woahhhhh is this illegal,,5,5,1
+hey woahhhhh is this illegal,,5,5,2
+hey woahhhhh is this illegal,,5,5,3
+hey woahhhhh is this illegal,,5,5,4
+hey woahhhhh is this illegal,oahhhhh,5,12,1
+hey woahhhhh is this illegal,ohhh,5,12,2
+hey woahhhhh is this illegal,ohh,5,12,3
+hey woahhhhh is this illegal,oh,5,12,4
+this feels illegalllllll,t,0,1,1
+this feels illegalllllll,t,0,1,2
+this feels illegalllllll,t,0,1,3
+this feels illegalllllll,t,0,1,4
+this feels illegalllllll,thi,0,3,1
+this feels illegalllllll,ti,0,3,2
+this feels illegalllllll,t,0,3,3
+this feels illegalllllll,t,0,3,4
+this feels illegalllllll,this ,0,5,1
+this feels illegalllllll,ti ,0,5,2
+this feels illegalllllll,ts,0,5,3
+this feels illegalllllll,t ,0,5,4
+this feels illegalllllll,this feels i,0,12,1
+this feels illegalllllll,ti el ,0,12,2
+this feels illegalllllll,tses,0,12,3
+this feels illegalllllll,t l,0,12,4
+this feels illegalllllll,,1,1,1
+this feels illegalllllll,,1,1,2
+this feels illegalllllll,,1,1,3
+this feels illegalllllll,,1,1,4
+this feels illegalllllll,hi,1,3,1
+this feels illegalllllll,h,1,3,2
+this feels illegalllllll,h,1,3,3
+this feels illegalllllll,h,1,3,4
+this feels illegalllllll,his ,1,5,1
+this feels illegalllllll,hs,1,5,2
+this feels illegalllllll,h ,1,5,3
+this feels illegalllllll,h,1,5,4
+this feels illegalllllll,his feels i,1,12,1
+this feels illegalllllll,hsfesi,1,12,2
+this feels illegalllllll,h e ,1,12,3
+this feels illegalllllll,hfs,1,12,4
+this feels illegalllllll,,2,1,1
+this feels illegalllllll,,2,1,2
+this feels illegalllllll,,2,1,3
+this feels illegalllllll,,2,1,4
+this feels illegalllllll,i,2,3,1
+this feels illegalllllll,i,2,3,2
+this feels illegalllllll,i,2,3,3
+this feels illegalllllll,i,2,3,4
+this feels illegalllllll,is ,2,5,1
+this feels illegalllllll,i ,2,5,2
+this feels illegalllllll,i,2,5,3
+this feels illegalllllll,i,2,5,4
+this feels illegalllllll,is feels i,2,12,1
+this feels illegalllllll,i el ,2,12,2
+this feels illegalllllll,ifli,2,12,3
+this feels illegalllllll,ie ,2,12,4
+this feels illegalllllll,,5,1,1
+this feels illegalllllll,,5,1,2
+this feels illegalllllll,,5,1,3
+this feels illegalllllll,,5,1,4
+this feels illegalllllll,,5,3,1
+this feels illegalllllll,,5,3,2
+this feels illegalllllll,,5,3,3
+this feels illegalllllll,,5,3,4
+this feels illegalllllll,,5,5,1
+this feels illegalllllll,,5,5,2
+this feels illegalllllll,,5,5,3
+this feels illegalllllll,,5,5,4
+this feels illegalllllll,feels i,5,12,1
+this feels illegalllllll,fesi,5,12,2
+this feels illegalllllll,fli,5,12,3
+this feels illegalllllll,fs,5,12,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,C,0,1,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,C,0,1,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,C,0,1,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,C,0,1,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,C i,0,3,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,Ci,0,3,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,C,0,3,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,C,0,3,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,C is ,0,5,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,Ci ,0,5,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,Cs,0,5,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,C ,0,5,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,C is a proce,0,12,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,Ci  rc,0,12,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,Cs o,0,12,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,C r,0,12,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,1,1,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,1,1,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,1,1,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,1,1,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications., i,1,3,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications., ,1,3,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications., ,1,3,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications., ,1,3,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications., is ,1,5,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications., s,1,5,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,  ,1,5,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications., ,1,5,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications., is a proce,1,12,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications., sapoe,1,12,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,  pc,1,12,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications., ao,1,12,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,2,1,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,2,1,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,2,1,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,2,1,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,i,2,3,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,i,2,3,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,i,2,3,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,i,2,3,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,is ,2,5,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,i ,2,5,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,i,2,5,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,i,2,5,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,is a proce,2,12,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,i  rc,2,12,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,iare,2,12,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,i c,2,12,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,1,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,1,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,1,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,1,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,3,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,3,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,3,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,3,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,5,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,5,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,5,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,,5,5,4
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,a proce,5,12,1
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,apoe,5,12,2
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,are,5,12,3
+C is a procedural high-level systems programming language created by Ken Thompson and Dennis Ritchie. It was made as the successor to B and intended to be used for writing the UNIX operating system. It was created in 1972 and is the basis for most Linux tools and applications.,ao,5,12,4

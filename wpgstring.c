@@ -109,7 +109,7 @@ enum StringError string_clear(struct String *string) {
 	return STRING_ERROR_NONE;
 }
 
-struct String* string_splice(struct String *string, unsigned short start, unsigned short end, short step) {
+struct String* string_splice(struct String *string, unsigned short start, unsigned short end, unsigned short step) {
 	if (start == end) {
 		fprintf(stderr, "[string_splice] Cannot splice a string using equal start and end boundaries.\n");
 		return NULL;
@@ -120,34 +120,26 @@ struct String* string_splice(struct String *string, unsigned short start, unsign
 		return NULL;
 	}
 	
-	if (start > end) {
-		if (step < 0) {
-			unsigned short placeholder = 0;
-			placeholder = start;
-			start = end;
-			end = placeholder;
-		}
-		else {
-			fprintf(stderr, "[string_splice] Cannot have a negative step (%hd) while having a start index (%hu) that is greater than the end index (%hu).\n", step, start, end);
-			return NULL;
-		}
-	}
-	
+	// Allocate new string
 	struct String *new_string = malloc(sizeof(struct String));
 	if (new_string == NULL) {
 		fprintf(stderr, "[string_splice] Failed to allocate memory for a new String struct on the heap.\n");
 		return NULL;
 	}
+
+	// Set default attributes
 	new_string->length = 0;
-	new_string->capacity = ((end - start) / abs(step)) + 1; 
+	new_string->capacity = ((end - start) / step) + 2; 
 	new_string->data = malloc(sizeof(char) * new_string->capacity); 
 	if (new_string->data == NULL) {
 		fprintf(stderr, "[string_splice] Failed to allocate %hu bytes of memory for the substring.\n", new_string->capacity);
 		free(new_string);
 		return NULL;
 	}
-		
-	for (ssize_t i = start; i < end; i += step) {
+
+	// Perform splice
+	for (size_t i = start; i < end; i += step) {
+		// Ensure there is enough memory to store additional characters
 		if (new_string->length >= new_string->capacity) {
 			new_string->capacity *= 2;
 			new_string->data = realloc(new_string->data, sizeof(char) * new_string->capacity);
@@ -157,6 +149,8 @@ struct String* string_splice(struct String *string, unsigned short start, unsign
 				return NULL;
 			}
 		}
+
+		// Store obtained character
 		new_string->data[new_string->length] = string->data[i]; 
 		new_string->length++;
 	}

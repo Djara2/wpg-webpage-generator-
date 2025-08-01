@@ -11,8 +11,9 @@ struct StringCreateTestParameters {
 struct StringSpliceTestParameters {
 	unsigned short start;
 	unsigned short end;
-	short step;
+	unsigned short step;
 	struct String *base;
+	struct String *expected_output;
 };
 
 enum ParameterSetType { 
@@ -34,6 +35,7 @@ bool are_tests_passed(bool *results, size_t length);
 bool test_string_init();		        	// Simple init test
 bool test_string_create(void *parameters);		// String with default value passed in
 bool test_string_set(void *parameters);			// Recently init'd string (no value) having a value set  
+bool test_string_splice(void *parameters);
 
 int main(int argc, char **argv) {
 	// Test simple string init
@@ -210,5 +212,48 @@ bool test_string_set(void *parameters) {
 		return false;
 	}
 
+	return true;
+}
+
+bool test_string_splice(void *parameters) {
+	if (parameters == NULL) { 
+		fprintf(stderr, "[test_string_splice] Cannot use NULL pointer for parameters argument.\n");
+		return false;
+	}
+
+	struct String *string = ((struct StringSpliceTestParameters*) parameters)->base;
+	unsigned short start = ((struct StringSpliceTestParameters*) parameters)->start;
+	unsigned short end = ((struct StringSpliceTestParameters*) parameters)->end;
+	unsigned short step = ((struct StringSpliceTestParameters*) parameters)->step;
+	struct String *expected_output = ((struct StringSpliceTestParameters*) parameters)->expected_output;
+
+	struct String *spliced_string = string_splice(string, start, end, step);
+	if (spliced_string == NULL) {
+		fprintf(stderr, "[test_string_splice] Output string is a NULL pointer.\n");
+		return false;
+	}
+	
+	if (spliced_string->data == NULL) { 
+		fprintf(stderr, "[test_string_splice] Output string has a NULL pointer for its data attribute.\n");
+		free(spliced_string);
+		return false;
+	}
+
+	if (spliced_string->length != expected_output->length) {
+		fprintf(stderr, "[test_string_splice] Output string does not have the same length (got %hu, but expected  %hu) attribute as the expected output string.\n", spliced_string->length, expected_output->length);
+		free(spliced_string->data);
+		free(spliced_string);
+		return false;
+	}
+
+	if (strcmp(spliced_string->data, expected_output->data) != 0) {
+		fprintf(stderr, "[test_string_splice] Output string does not have the same textual contents (got \"%s\", but expected  \"%s\") attribute as the expected output string.\n", spliced_string->data, expected_output->data);
+		free(spliced_string->data);
+		free(spliced_string);
+		return false;
+	}
+
+	free(spliced_string->data);
+	free(spliced_string);
 	return true;
 }
