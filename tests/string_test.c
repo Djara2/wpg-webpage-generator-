@@ -65,7 +65,20 @@ int main(int argc, char **argv) {
 	// Test string_set with a recently initialized string
 	bool string_set_test_results[2];
 	run_and_evaluate_tests("string_set", &test_string_set, (void*) string_create_test_parameters, TYPE_STRING_CREATE, string_set_test_results, 2);
-	
+
+	// Test string splice
+	struct String splice_test_input_string_1;
+	struct String splice_test_input_string_2;
+	struct String splice_test_input_string_3;
+
+	string_set(splice_test_input_string_1, "My name is Dave");
+	string_set(splice_test_input_string_2, "Hey woahhhhhh is this illegal? This feels illegal. My name is Pink and I'm really glad to meet you.");
+	string_set(splice_test_input_string_3, "The C programming language was created by Dennis Ritchie and Ken Thompson. It is a procedural, systems programming language. It is one of the most popular programming languages in the world, even though it was created long ago in 1972.");
+
+	bool string_splice_test_results[3];
+	struct StringSpliceTestParameters string_splice_test_parameters[3];
+	run_and_evaluate_tests("string_splice", &test_string_splice, (void*) string_splice_test_parameters, TYPE_STRING_SPLICE, string_splice_test_results, 3);
+
 	return 0;
 } // end main
 
