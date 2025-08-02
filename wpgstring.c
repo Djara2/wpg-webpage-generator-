@@ -23,12 +23,13 @@ struct String* string_init() {
 	return new_string;
 }
 
-struct String* string_create(char *data, unsigned short length) {
+struct String* string_create(char *data) {
 	if (data == NULL) {
 		fprintf(stderr, "[string_create] Cannot create a new String using a character pointer that points to NULL.\n");
 		return NULL;
 	}
-	
+
+	unsigned short length =	strlen(data);
 	if (length == 0) {
 		fprintf(stderr, "[string_create] Cannot create a new String of length 0.\n");
 		return NULL;

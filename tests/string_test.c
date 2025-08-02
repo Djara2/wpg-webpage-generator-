@@ -3,6 +3,18 @@
 #include <stdbool.h>
 #include "../wpgstring.h"
 
+enum ParameterSetType { 
+	TYPE_NONE,
+	TYPE_STRING_CREATE,
+	TYPE_STRING_SPLICE
+};
+
+enum TestEnvironmentType {
+	ENVIRONMENT_NONE,
+	ENVIRONMENT_STRING_CREATE,
+	ENVIRONMENT_STRING_SPLICE
+};
+
 struct StringCreateTestParameters { 
 	char *text;
 	size_t length;
@@ -16,10 +28,12 @@ struct StringSpliceTestParameters {
 	struct String *expected_output;
 };
 
-enum ParameterSetType { 
-	TYPE_NONE,
-	TYPE_STRING_CREATE,
-	TYPE_STRING_SPLICE
+struct TestEnvironment {
+	enum TestEnvironmentType type;
+	void *parameters;
+	size_t parameters_length;
+	bool *results;
+	size_t results_length;
 };
 
 // Utility functions
@@ -36,6 +50,50 @@ bool test_string_init();		        	// Simple init test
 bool test_string_create(void *parameters);		// String with default value passed in
 bool test_string_set(void *parameters);			// Recently init'd string (no value) having a value set  
 bool test_string_splice(void *parameters);
+
+struct TestEnvironment* test_environment_create(enum TestEnvironmentType type) {
+	// Create TestEnvironment
+	struct TestEnvironment *environment = malloc(sizeof(struct TestEnvironment));
+	if (environment == NULL) { 
+		fprintf(stderr, "[test_environment_create] Failed to allocate space for TestEnvironment struct on the heap.\n");
+		return NULL;
+	}
+	environment->type = type;
+	
+	// Behavior based on type of environment
+	switch (type) { 
+		case ENVIRONMENT_NONE:
+			fprintf(stderr, "[test_environment_create] ERROR: TestEnvironmentType code %d (ENVIRONMENT_NONE) is invalid.\n", type);
+			free(environment);
+			return NULL;
+			break;
+
+		case ENVIRONMENT_STRING_CREATE:
+			break;
+
+		case ENVIRONMENT_STRING_SPLICE:
+			// Allocate space for the StringSpliceTestParameters
+			environment->parameters = (void*) malloc(sizeof(struct StringSpliceTestParameters) * 3);
+			if (environment->parameters == NULL) {
+				fprintf(stderr, "[test_environment_create] Failed to allocate memory for 3 StringSpliceTestParameters on the heap.\n");
+				free(environment);
+				return NULL;
+			}
+
+			// Set the values for the individual parameters.
+			struct StringSpliceTestParameters *parameters = (struct StringSpliceTestParameters*) environment->parameters;
+			// (1) Set the values for the first parameter set
+			parameters[0]->base = string_create("My name is Dave and I am a programmer.");
+			parameters[1]->base = 
+			break;
+
+		default:
+			fprintf(stderr, "[test_environment_create] ERROR: TestEnvironmentType code %d is invalid/unimplemented.\n", type);
+			free(environment);
+			return NULL;
+			break; 
+	} 
+}
 
 int main(int argc, char **argv) {
 	// Test simple string init
@@ -67,16 +125,6 @@ int main(int argc, char **argv) {
 	run_and_evaluate_tests("string_set", &test_string_set, (void*) string_create_test_parameters, TYPE_STRING_CREATE, string_set_test_results, 2);
 
 	// Test string splice
-	struct String splice_test_input_string_1;
-	struct String splice_test_input_string_2;
-	struct String splice_test_input_string_3;
-
-	string_set(splice_test_input_string_1, "My name is Dave");
-	string_set(splice_test_input_string_2, "Hey woahhhhhh is this illegal? This feels illegal. My name is Pink and I'm really glad to meet you.");
-	string_set(splice_test_input_string_3, "The C programming language was created by Dennis Ritchie and Ken Thompson. It is a procedural, systems programming language. It is one of the most popular programming languages in the world, even though it was created long ago in 1972.");
-
-	bool string_splice_test_results[3];
-	struct StringSpliceTestParameters string_splice_test_parameters[3];
 	run_and_evaluate_tests("string_splice", &test_string_splice, (void*) string_splice_test_parameters, TYPE_STRING_SPLICE, string_splice_test_results, 3);
 
 	return 0;

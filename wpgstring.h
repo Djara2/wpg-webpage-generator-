@@ -16,7 +16,7 @@ struct String {
 
 struct String* string_init();
 
-struct String* string_create(char *data, unsigned short length);
+struct String* string_create(char *data);
 
 enum StringError string_set(struct String *string, char *data, unsigned short length);
 
