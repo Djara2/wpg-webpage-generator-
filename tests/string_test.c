@@ -24,9 +24,21 @@ struct StringSpliceTestParameters {
 	unsigned short start;
 	unsigned short end;
 	unsigned short step;
-	struct String *base;
-	struct String *expected_output;
+	struct String base;
+	struct String expected_output;
 };
+
+void string_splice_test_parameters_set_range(struct StringSpliceTestParameters *parameter, unsigned short start, unsigned short end, unsigned short step) {
+	if (parameter == NULL) {
+		fprintf(stderr, "[string_splice_test_parameters_set_range] Cannot set attributes in a memory region pointed to by a NULL pointer.\n");
+		return;
+	} 
+
+	parameter->start = start;
+	parameter->end = end;
+	parameter->step = step;
+	return; 
+}
 
 struct TestEnvironment {
 	enum TestEnvironmentType type;
@@ -35,6 +47,112 @@ struct TestEnvironment {
 	bool *results;
 	size_t results_length;
 };
+
+
+void test_parameter_destroy(void *test_parameter, enum ParameterSetType parameter_type) {
+	if (test_parameter == NULL) {
+		fprintf(stderr, "[test_parameter_destroy] Cannot free the memory addressed by a NULL pointer.\n");
+		return;
+	} 
+
+	switch (parameter_type) {
+		case TYPE_NONE:
+			fprintf(stderr, "[test_parameter_destroy] Cannot free the memory of a parameter set without knowing which kind of parameter it is (code %d \"TYPE_NONE\" is invalid).\n", parameter_type);
+			return;
+			break; 
+
+		case TYPE_STRING_CREATE:
+			struct StringCreateTestParameters *parameter = (struct StringCreateTestParameters*) test_parameter;
+			if (parameter->text != NULL) free(parameter->text); 
+			free(parameter);
+			return;
+			break;
+
+		case TYPE_STRING_SPLICE:
+			struct StringSpliceTestParameters *parameter = (struct StringSpliceTestParameters*) test_parameter;
+			// Free the input string
+			if (parameter->base != NULL && (parameter->base).data != NULL)
+				free( (parameter->base).data ); 
+
+			// Free the expected output string
+			if (parameter->expected_output != NULL && (parameter->expected_output).data != NULL) 
+				free( (parameter->expected_output).data );
+			
+			
+			// If using an array of parameters, then we don't want to free this one yet.
+			free(parameter);
+			return;
+			break;
+
+		default:  
+			fprintf(stderr, "[test_parameter_destroy] Code %d is invalid or unimplemented.\n", parameter_type);
+			return;
+			break;
+	}
+
+	return;
+}
+
+void test_parameter_array_destroy(void *test_parameters, enum ParameterSetType parameter_type, size_t length) {
+	if (test_parameters == NULL) {
+		fprintf(stderr, "[test_parameter_array_destroy] Cannot free the memory addressed by a NULL pointer.\n");
+		return;
+	} 
+
+	switch (parameter_type) {
+		case TYPE_NONE:
+			fprintf(stderr, "[test_parameter_array_destroy] Cannot free the memory of a parameter set without knowing which kind of parameter it is (code %d \"TYPE_NONE\" is invalid).\n", parameter_type);
+			return;
+			break; 
+
+		case TYPE_STRING_CREATE:
+			struct StringCreateTestParameters *parameters = (struct StringCreateTestParameters*) test_parameters;
+			struct StringCreateTestParameters *current_parameter;
+			// Free buffers within individual parameter structs 
+			for (size_t i = 0; i < length; i++) {
+				current_parameter = parameters[i];
+				if (current_parameter->text != NULL) 
+					free(parameter->text); 
+			}
+			// Free the entire array
+			free(parameters);
+			return;
+			break;
+
+		case TYPE_STRING_SPLICE:
+			struct StringSpliceTestParameters *parameters = (struct StringSpliceTestParameters*) test_parameters;
+			struct StringSpliceTestParameters *current_parameter;
+			char *current_base;
+			char *current_expected_output;
+			// Free the buffers within individual parameter structs
+			for(size_t i = 0; i < length; i++) { 
+				// Set current items of interest
+				current_parameter = parameters[i]; 
+				current_base = current_parameter->base;
+				current_expected_output = current_parameter->expected_output;
+
+				// Free the input string
+				if (current_base != NULL && current_base.data != NULL)
+					free(current_base.data); 
+
+				// Free the expected output string
+				if (current_expected_output != NULL && current_expected_output.data != NULL) 
+					free(current_expected_output.data);
+			}
+			
+			// Free the array itself
+			free(parameters);
+			return;
+			break;
+
+		default:  
+			fprintf(stderr, "[test_parameter_array_destroy] Code %d is invalid or unimplemented.\n", parameter_type);
+			return;
+			break;
+	}
+
+	return;
+}
 
 // Utility functions
 void run_and_evaluate_tests(char *function_title, 
@@ -72,6 +190,7 @@ struct TestEnvironment* test_environment_create(enum TestEnvironmentType type) {
 			break;
 
 		case ENVIRONMENT_STRING_SPLICE:
+			environment->parameters_length = 3;
 			// Allocate space for the StringSpliceTestParameters
 			environment->parameters = (void*) malloc(sizeof(struct StringSpliceTestParameters) * 3);
 			if (environment->parameters == NULL) {
@@ -79,12 +198,69 @@ struct TestEnvironment* test_environment_create(enum TestEnvironmentType type) {
 				free(environment);
 				return NULL;
 			}
+			environment->results = malloc(sizeof(bool) * 3);
+			if (environment->results == NULL) { 
+				fprintf(stderr, "[test_environment_create] Failed to allocate memory for a size-3 boolean array on the heap.\n");
+				free(environment->parameters);
+				free(environment);
+				return NULL;
+			}
 
-			// Set the values for the individual parameters.
+			// SET THE VALUES FOR THE INDIVIDUAL PARAMETERS.
 			struct StringSpliceTestParameters *parameters = (struct StringSpliceTestParameters*) environment->parameters;
-			// (1) Set the values for the first parameter set
+			// (1.1) Set the ranges for the first parameter set
+			string_splice_test_parameters_set_range(parameters[0], 0, 5, 1);
+			
+			// (1.2) Set the input string for the first parameter set.
 			parameters[0]->base = string_create("My name is Dave and I am a programmer.");
-			parameters[1]->base = 
+			if (parameters[0]->base == NULL) {
+				fprintf(stderr, "[test_environment_create] Call to string_create for the first parameter failed.\n");
+				test_parameter_array_destroy(parameters, TYPE_STRING_SPLICE, 3); 
+				free(environment->results);
+				free(environment);
+				return NULL;
+			} 
+
+			// (1.3) Set the expected output string for the first parameter set
+			parameters[0]->expected_output = string_create("My na");
+			if (parameters[0]->expected_output == NULL) {
+				fprintf(stderr, "[test_environment_create] Call to string_create for the first parameter's \"expected_output\" attribute failed.\n");
+				test_parameter_array_destroy(parameters, TYPE_STRING_SPLICE, 3);
+				free(environment->results);
+				free(environment);
+				return NULL;
+			}
+
+			// (2) Set the values for the second parameter set
+			string_splice_test_parameters_set_range(parameters[1], 1, 7, 2);
+			parameters[1]->base = string_create("My name is Pink and I'm really glad to meet you.");
+			if (parameters[1]->base == NULL) {
+				fprintf(stderr, "[test_environment_create] Call to string_create for the second parameter failed.\n");
+				test_parameter_array_destroy(parameters, TYPE_STRING_SPLICE, 3);
+				free(environment->results);
+				free(environment);
+				return NULL;
+			} 
+			parameters[1]->expected_output = string_create("ynm");
+			if (parameters[1]->base == NULL) {
+				fprintf(stderr, "[test_environment_create] Call to string_create for the second parameter failed.\n");
+				test_parameter_array_destroy(parameters, TYPE_STRING_SPLICE, 3);
+				free(environment->results);
+				free(environment);
+				return NULL;
+			} 
+
+			// (3) Set the attributes for the third parameter set
+			parameters[2]->base = string_create("C is a procedural systems programming language created by Dennis Ritchie. It is my favorite programming language.");
+			if (parameters[2]->base == NULL) {
+				fprintf(stderr, "[test_environment_create] Call to string_create for the third parameter failed.\n");
+				test_parameter_array_destroy(parameters, TYPE_STRING_SPLICE, 3);
+				free(environment->results);
+				free(environment);
+				return NULL;
+			}
+			
+			return environment;
 			break;
 
 		default:
@@ -93,6 +269,37 @@ struct TestEnvironment* test_environment_create(enum TestEnvironmentType type) {
 			return NULL;
 			break; 
 	} 
+}
+
+void test_environment_destroy(struct TestEnvironment *environment) {
+	if (environment == NULL) {
+		fprintf(stderr, "[test_environment_destroy] Cannot free memory addressed by a NULL pointer.\n");
+		return;
+	} 
+
+	if (environment->results != NULL) 	free (environment->results); 
+	switch (environment->type) {
+		case ENVIRONMENT_NONE:
+			fprintf(stderr, "[test_environment_destroy] Cannot be certain of how to delete the dynamically allocated properties of a test environment which has an unknown type (ENVIRONMENT_NONE). There may be a memory leak due to this.\n");
+			free(environment);
+			break;
+
+		case ENVIRONMENT_STRING_CREATE:
+
+			free (environment);
+			break;
+
+		case ENVIRONMENT_STRING_SPLICE:
+			test_parameter_array_destroy(environment->parameters, TYPE_STRING_SPLICE, 3);
+			free(environment);
+			break;
+		
+		default:
+			fprintf(stderr, "[test_environment_destroy] TestEnvironmentType %d is an invalid/unimplemented case. The environment will be freed, but there is no guarantee that its dynamically allocated attributes will be freed correctly. A memory leak may be caused by this.\n");
+			free(environment);
+			break;
+	}
+	return;
 }
 
 int main(int argc, char **argv) {
