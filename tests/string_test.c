@@ -9,10 +9,15 @@ enum ParameterSetType {
 	TYPE_STRING_SPLICE
 };
 
-enum TestEnvironmentType {
-	ENVIRONMENT_NONE,
-	ENVIRONMENT_STRING_CREATE,
-	ENVIRONMENT_STRING_SPLICE
+enum ParameterSetField { 
+	FIELD_NONE,
+	FIELD_TEXT,
+	FIELD_LENGTH,
+	FIELD_BASE_DATA,
+	FIELD_EXPECTED_OUTPUT_DATA, 
+	FIELD_START,
+	FIELD_END,
+	FIELD_STEP
 };
 
 struct StringCreateTestParameters { 
@@ -28,6 +33,154 @@ struct StringSpliceTestParameters {
 	struct String expected_output;
 };
 
+void* test_parameter_create(enum ParameterSetType type) { 
+	switch (type) {
+		case TYPE_NONE:
+			fprintf(stderr, "[test_parameter_create] TYPE_NONE (%d) is invalid.\n", type);
+			return NULL;
+			break;
+
+		case TYPE_STRING_CREATE:
+			struct StringCreateTestParameters *parameter = malloc(sizeof(struct StringCreateTestParameters));
+			if (parameter == NULL) {
+				fprintf(stderr, "[test_parameter_create] Failed to allocate memory for a StringCreateTestParameters struct on the heap.\n");
+				return NULL;
+			}
+			break;
+
+		case TYPE_STRING_SPLICE:
+			struct StringSpliceTestParameters *parameter = malloc(sizeof(struct StringSpliceTestParameters));
+			if (parameter == NULL) {
+				fprintf(stderr, "[test_parameter_create] Failed to allocate memory for a StringSpliceCreateTestParameters  struct on the heap.\n");
+				return NULL;
+			}
+			break;
+
+		default:  
+			fprintf(stderr, "[test_parameter_create] ParameterSetType code %d is invalid or unimplemented.\n", type);
+			return NULL;
+			break;
+	}
+
+	return ((void*) parameter);
+}
+
+void* test_parameter_array_create(enum ParameterSetType type, size_t length) {
+	if (length == 0) {
+		fprintf(stderr, "[test_parameter_array_create] Length cannot be 0.\n"); 
+		return NULL;
+	}
+
+	switch (type) {
+		case TYPE_NONE:
+			fprintf(stderr, "[test_parameter_create] TYPE_NONE (%d) is invalid.\n", type);
+			return NULL;
+			break;
+
+		case TYPE_STRING_CREATE:
+			struct StringCreateTestParameters *parameters = malloc(sizeof(struct StringCreateTestParameters) * length);
+			if (parameters == NULL) {
+				fprintf(stderr, "[test_parameter_create] Failed to allocate memory for %zu StringCreateTestParameters structs on the heap.\n", length);
+				return NULL;
+			}
+			break;
+
+		case TYPE_STRING_SPLICE:
+			struct StringSpliceTestParameters *parameters = malloc(sizeof(struct StringSpliceTestParameters) * length);
+			if (parameters == NULL) {
+				fprintf(stderr, "[test_parameter_create] Failed to allocate memory for %zu StringSpliceCreateTestParameters  structs on the heap.\n", length);
+				return NULL;
+			}
+			break;
+
+		default:  
+			fprintf(stderr, "[test_parameter_create] ParameterSetType code %d is invalid or unimplemented.\n", type);
+			return NULL;
+			break;
+	}
+
+	return ((void*) parameters);
+}
+
+bool test_parameter_set(void *parameter, enum ParameterSetType type, enum ParameterSetField field, void *data, size_t data_size) { 
+	if (parameter == NULL) {
+		fprintf(stderr, "[test_parameter_set] Cannot set the attributes of a struct addressed by a NULL pointer.\n");
+		return false;
+	} 
+
+	if (data == NULL) {
+		fprintf(stderr, "[test_parameter_set] Cannot set the attributes of a struct with the data addressed by a NULL pointer (data pointer is NULL).\n");
+		return false;
+	}
+
+	if (data_size == 0) {
+		fprintf(stderr, "[test_parameter_set] Data size cannot be 0 bytes.\n");
+		return false;
+	}
+
+	switch (type) {
+		case TYPE_NONE:
+			fprintf(stderr, "[test_parameter_set] TYPE_NONE is invalid when trying to set the fields of a parameter set.\n");
+			return false;
+			break;
+
+		case TYPE_STRING_CREATE: 
+			struct StringCreateTestParameters *casted_parameter = (struct StringCreateTestParameters*) parameter;
+			switch (field) {
+				case FIELD_NONE:
+					fprintf(stderr, "[test_parameter_set] Field FIELD_NONE is invalid when setting the fields of a StringCreateTestParameters struct.\n");
+					return false;
+					break;
+
+				case FIELD_TEXT: 
+					// Allocate memory for the text buffer if it does not already occupy some memory
+					if (casted_parameter->text == NULL) {
+						casted_parameter->text = malloc(sizeof(char) * data_length + 1);
+						if (casted_parameter->text == NULL) {
+							fprintf(stderr, "[test_parameter_set] Failed to allocate %zu bytes of memory to the \"text\" buffer of the provided StringCreateTestParameters struct so that the buffer can be set.\n", data_length + 1);
+							return false;
+						}
+					}
+
+					// Ensure there is enough memory in the buffer if it is already allocated
+					else {
+						if (casted_parameter->length < data_length + 1) {
+							casted_parameter->text = realloc(sizeof(char) * data_length + 1);
+							if (casted_parameter->text == NULL) { 
+								fprintf(stderr, "[test_parameter_set] Failed to reallocate the text buffer of the StringCreateTestParameters struct so that it can accomodate the requisite %zu bytes to hold the provided string.\n", data_length + 1);
+								return NULL;
+							}
+						}
+
+					
+					}
+
+					// Actually copy the data over 
+					strcpy(casted_parameter->text, (char*) data);	
+					break;
+
+				case FIELD_LENGTH:
+					memcpy( &(casted_parameter->length), data, sizeof(unsigned short));
+					break;
+
+				default:
+					fprintf(stderr, "[test_parameter_set] Field code %d is invalid when setting the fields of a StringCreateTestParameters struct.\n", field);
+					return false;
+					break;
+			}
+			break;
+
+		case TYPE_STRING_SPLICE:
+			break;
+
+		default:
+			return false;
+			break;
+	}
+
+	return true;
+}
+
 void string_splice_test_parameters_set_range(struct StringSpliceTestParameters *parameter, unsigned short start, unsigned short end, unsigned short step) {
 	if (parameter == NULL) {
 		fprintf(stderr, "[string_splice_test_parameters_set_range] Cannot set attributes in a memory region pointed to by a NULL pointer.\n");
@@ -39,15 +192,6 @@ void string_splice_test_parameters_set_range(struct StringSpliceTestParameters *
 	parameter->step = step;
 	return; 
 }
-
-struct TestEnvironment {
-	enum TestEnvironmentType type;
-	void *parameters;
-	size_t parameters_length;
-	bool *results;
-	size_t results_length;
-};
-
 
 void test_parameter_destroy(void *test_parameter, enum ParameterSetType parameter_type) {
 	if (test_parameter == NULL) {
@@ -153,6 +297,21 @@ void test_parameter_array_destroy(void *test_parameters, enum ParameterSetType p
 
 	return;
 }
+
+enum TestEnvironmentType {
+	ENVIRONMENT_NONE,
+	ENVIRONMENT_STRING_CREATE,
+	ENVIRONMENT_STRING_SPLICE
+};
+
+struct TestEnvironment {
+	enum TestEnvironmentType type;
+	void *parameters;
+	size_t parameters_length;
+	bool *results;
+	size_t results_length;
+};
+
 
 // Utility functions
 void run_and_evaluate_tests(char *function_title, 
